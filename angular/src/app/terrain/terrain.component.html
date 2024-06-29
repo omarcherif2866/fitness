@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+
+<section class="team-section team-page spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="team-title">
+          <div class="section-title">
+            <span style="color: yellow;">Nos Terrains</span>
+            <h2 style="color: white;">TRAIN WITH EXPERTS</h2>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-4 col-sm-6" *ngFor="let tr of terrains">
+        <div class="ts-item set-bg" [style.backgroundImage]="'url(' + getImageUrl(tr.image) + ')'">
+          <div class="ts_text">
+            <h4>{{ tr.nom }} </h4>
+            <div class="tt_social">
+              <a href="#"><i class="fa fa-facebook"></i></a>
+              <a href="#"><i class="fa fa-twitter"></i></a>
+              <a href="#"><i class="fa fa-youtube-play"></i></a>
+              <a href="#"><i class="fa fa-instagram"></i></a>
+              <a href="#"><i class="fa  fa-envelope-o"></i></a>
+            </div>
+          </div>
+        </div>
+        <div class="button-container">
+          <button class="bouton valider" (click)="reserve(tr.id)">Réserver</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

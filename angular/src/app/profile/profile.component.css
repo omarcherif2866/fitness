@@ -1,0 +1,74 @@
+/* Styles for Dashboard */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard {
+    display: flex;
+}
+
+.sidebar {
+    background-color: #333;
+    color: #fff;
+    width: 100%;
+    padding: 20px;
+}
+
+.sidebar h2 {
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.sidebar ul li a:hover {
+    text-decoration: underline;
+}
+
+
+
+
+
+
+
+
+
+
+
+/* Style général du breadcrumb */
+.main-breadcrumb {
+    padding: 8px 15px; /* Espacement intérieur */
+    background-color: #f8f9fa; /* Couleur de fond */
+    border: 1px solid #dee2e6; /* Bordure */
+    border-radius: 4px; /* Bord arrondi */
+}
+
+/* Style pour chaque élément de breadcrumb */
+.breadcrumb-item {
+    display: inline-block;
+    margin-right: 5px; /* Espacement entre les éléments */
+}
+
+/* Style pour les liens dans les éléments breadcrumb */
+.breadcrumb-item a {
+    color: #007bff; /* Couleur du texte */
+    text-decoration: none; /* Supprimer le soulignement */
+    transition: color 0.3s; /* Transition de couleur lors du survol */
+}
+
+.breadcrumb-item a:hover {
+    color: #0056b3; /* Couleur du texte au survol */
+}

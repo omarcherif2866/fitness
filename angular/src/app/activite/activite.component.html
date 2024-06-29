@@ -1,0 +1,37 @@
+<app-navbar></app-navbar>
+<body>
+
+<section class="team-section team-page spad">
+  <div class="container-fluid main-cont">
+    <div class="row justify-content-center"> <!-- Utilisation de justify-content-center pour centrer -->
+      <div class="col-md-10">
+        <div class="card-columns">
+          <!-- Utilisation de ngFor pour itérer sur les cours -->
+          <div *ngFor="let chunk of chunkArray(courss, 3)" class="row">
+            <div *ngFor="let cours of chunk" class="col-md-4 mb-4">
+              <div class="underlay">
+                <div class="card">
+                  <div class="card-img-top" [style.backgroundImage]="'url(' + getImageUrl(cours.image) + ')'"></div>
+                  <div class="card-block text-center">
+                    <h5 class="card-title" style="font-family: 'Anton', sans-serif">{{ cours.nom }}</h5>
+
+                    
+                    <!-- <hr>
+                    <h6 class="card-subtitle mb-2 text-muted" style="font-family: 'Anton', sans-serif">{{ cours.date | date: 'dd/MM/yyyy' }}</h6>
+                    <hr> -->
+                  </div>
+                  
+                </div>
+              </div>
+              <!-- <div class="button-container">
+                <button class="bouton valider" (click)="reserve(cours.id)">Réserver</button>
+              </div> -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<app-footer></app-footer>

@@ -1,0 +1,23 @@
+
+
+
+
+<form (ngSubmit)="addReservation()">
+  
+    <div class="form-group">
+        <label>Date:</label>
+        <input type="date" class="form-control" [(ngModel)]="reservation.date" name="date" required>
+    </div>
+
+    <div class="form-group">
+        <label>Heure:</label>
+        <input type="text" class="form-control" [(ngModel)]="reservation.heure" name="heure" required>
+    </div>
+  
+
+
+  
+    <button type="submit">Add Reservation</button>
+</form>
+
+<br><br><br>

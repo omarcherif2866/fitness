@@ -1,0 +1,350 @@
+<app-navbar></app-navbar>
+
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div class="w3-sidebar w3-light-grey w3-bar-block" style="width:25%">
+  <h3 class="w3-bar-item">Menu</h3>
+  <a class="w3-bar-item w3-button" (click)="showUsers()">Utilisateurs</a>
+  <a  class="w3-bar-item w3-button" (click)="showTerrains()">Terrains</a>
+  <a  class="w3-bar-item w3-button" (click)="showCoachs()">Coachs</a>
+  <a  class="w3-bar-item w3-button" (click)="showActivites()">Activites</a>
+  <a  class="w3-bar-item w3-button" (click)="showReservations()">Reservations</a>
+
+
+
+
+</div>
+
+<div style="margin-left:25%">
+  <div class="w3-container w3-yellow">
+    <h1>{{ pageTitle }}</h1>
+  </div>
+
+  <div *ngIf="displayUsers">
+    <div *ngIf="users && users.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom d'utilisateur</th>
+            <th>Email</th>
+            <th>Date de naissance</th>
+            <th>Téléphone</th>
+            <th>Etat</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.id }}</td>
+            <td>{{ user.username }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ user.birthdate | date }}</td>
+            <td>{{ user.phone }}</td>
+            <td>{{ user.blocked }}</td>
+
+            <td>
+              <button (click)="blockUser(user.id)" *ngIf="!user.blocked">Bloquer</button>
+              <button (click)="unblockUser(user.id)" *ngIf="user.blocked">Débloquer</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <div *ngIf="users && users.length === 0">
+      <p>Aucun utilisateur trouvé.</p>
+    </div>
+  </div>
+  
+
+<!-- --------------------------coachs------------------------------------------------- -->
+
+
+  <div *ngIf="displayCoachs">
+    <button type="button" class="btn btn-light" (click)="afficherFormulaire('createForm')">Ajouter coach</button>
+    <div *ngIf="coachs && coachs.length > 0">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom </th>
+            <th>Prenom </th>
+            <th>Specialite</th>
+            <th>Dates</th>
+            <th>Heures</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let coach of coachs">
+            <td>{{ coach.id }}</td>
+            <td>{{ coach.nom }}</td>
+            <td>{{ coach.prenom }}</td>
+            <td>{{ coach.specialite }}</td>
+            <td>{{ coach.dates }}</td>
+            <td>{{ coach.heures }}</td>
+            <td>
+              <i class="fas fa-edit mr-2" (click)="editCoach(coach)" style="color: blue;"></i>
+              <i class="fas fa-trash" (click)="deleteCoach(coach.id)" style="margin-left: 35px; color: red;"></i>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div *ngIf="coachs && coachs.length === 0">
+      <p>Aucun coach trouvé.</p>
+    </div>
+
+    <form *ngIf="afficherForm === 'createForm' || afficherForm === 'editForm'" [formGroup]="CoachForm" style="margin-left: 30px;" (submit)="saveOrUpdate()" id="createForm" enctype="multipart/form-data">
+      <div class="form-group row input-group-sm mb-3">
+        <label for="nom" class="col-sm-3 col-form-label">Nom</label>
+        <div class="col-sm-9">
+          <input type="text" id="nom" formControlName="nom" required class="form-control" placeholder="Nom">
+        </div>
+      </div>
+    
+      <div class="form-group row input-group-sm mb-3">
+        <label for="prenom" class="col-sm-3 col-form-label">Prenom</label>
+        <div class="col-sm-9">
+          <input type="text" id="prenom" formControlName="prenom" required class="form-control" placeholder="Prénom">
+        </div>
+      </div>
+    
+      <div class="form-group row input-group-sm mb-3">
+        <label for="specialite" class="col-sm-3 col-form-label">Spécialité</label>
+        <div class="col-sm-9">
+          <input type="text" id="specialite" formControlName="specialite" required class="form-control" placeholder="Spécialité">
+        </div>
+      </div>
+    
+<!-- Jours de la semaine -->
+<h4>Jours de la semaine</h4>
+<div formArrayName="dates" class="d-flex flex-wrap">
+  <ng-container *ngFor="let jour of joursSemaine; let i = index">
+    <div class="mr-3 mb-2">
+      <label class="checkbox-inline">
+        <input type="checkbox" [formControlName]="i"> {{ jour }}
+      </label>
+    </div>
+    <div style="width: 60px;"></div> <!-- Espacement entre les jours -->
+  </ng-container>
+</div>
+
+<!-- Heures -->
+<h4>Heures</h4>
+<div formArrayName="heures" class="d-flex flex-wrap">
+  <ng-container *ngFor="let heure of joursHeure; let i = index">
+    <div class="mr-3 mb-2">
+      <label class="checkbox-inline">
+        <input type="checkbox" [formControlName]="i"> {{ heure }}
+      </label>
+    </div>
+    <div style="width: 70px;"></div> <!-- Espacement entre les heures -->
+  </ng-container>
+</div>
+
+
+
+    
+      <div class="form-group">
+        <input type="file" class="form-control" (change)="onFileSelected($event)">
+      </div>
+      
+      <br>
+      <button class="btn btn-primary login-btn" type="submit">{{ selectedCoach ? 'Modifier' : 'Ajouter' }}</button>
+      <button class="btn btn login-btn" type="button" (click)="closeForm()" style="margin-left: 11px; color: red;">Fermer formulaire</button>
+    </form>
+</div>
+
+
+<!-- --------------------------cours------------------------------------------------- -->
+
+
+<div *ngIf="displayActivites">
+  <button type="button" class="btn btn-light" (click)="afficherFormulaire('createForm')">Ajouter Activités</button>
+  <div *ngIf="activites && activites.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom </th>
+          <th>Dates</th>
+          <th>Heures</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let activite of activites">
+          <td>{{ activite.id }}</td>
+          <td>{{ activite.nom }}</td>
+          <td>{{ activite.dates }}</td>
+          <td>{{ activite.heures }}</td>
+          <td>
+            <i class="fas fa-edit mr-2" (click)="editActivites(activite)" style="color: blue;"></i>
+            <i class="fas fa-trash" (click)="deleteActivites(activite.id)" style="margin-left: 35px; color: red;"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="activites && activites.length === 0">
+    <p>Aucune activite trouvée.</p>
+  </div>
+
+  <form *ngIf="afficherForm === 'createForm' || afficherForm === 'editForm'" [formGroup]="ActiviteForm" style="margin-left: 30px;" (submit)="saveOrUpdateActivites()" id="createForm" enctype="multipart/form-data">
+    <div class="form-group row input-group-sm mb-3">
+      <label for="nom" class="col-sm-3 col-form-label">Nom</label>
+      <div class="col-sm-9">
+        <input type="text" id="nom" formControlName="nom" required class="form-control" placeholder="Nom">
+      </div>
+    </div>
+  
+  
+<!-- Jours de la semaine -->
+<h4>Jours de la semaine</h4>
+<div formArrayName="dates" class="d-flex flex-wrap">
+<ng-container *ngFor="let jour of joursSemaine; let i = index">
+  <div class="mr-3 mb-2">
+    <label class="checkbox-inline">
+      <input type="checkbox" [formControlName]="i"> {{ jour }}
+    </label>
+  </div>
+  <div style="width: 60px;"></div> <!-- Espacement entre les jours -->
+</ng-container>
+</div>
+
+<!-- Heures -->
+<h4>Heures</h4>
+<div formArrayName="heures" class="d-flex flex-wrap">
+<ng-container *ngFor="let heure of joursHeure; let i = index">
+  <div class="mr-3 mb-2">
+    <label class="checkbox-inline">
+      <input type="checkbox" [formControlName]="i"> {{ heure }}
+    </label>
+  </div>
+  <div style="width: 70px;"></div> <!-- Espacement entre les heures -->
+</ng-container>
+</div>
+
+
+
+  
+    <div class="form-group">
+      <input type="file" class="form-control" (change)="onFileSelectedActivites($event)">
+    </div>
+    
+    <br>
+    <button class="btn btn-primary login-btn" type="submit">{{ selectedActivite ? 'Modifier' : 'Ajouter' }}</button>
+    <button class="btn btn login-btn" type="button" (click)="closeForm()" style="margin-left: 11px; color: red;">Fermer formulaire</button>
+  </form>
+</div>
+
+
+<!-- --------------------------terrain------------------------------------------------- -->
+
+
+<div *ngIf="displayTerrains">
+  <button type="button" class="btn btn-light" (click)="afficherFormulaire('createForm')">Ajouter Terrains</button>
+  <div *ngIf="terrains && terrains.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nom </th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let terrain of terrains">
+          <td>{{ terrain.id }}</td>
+          <td>{{ terrain.nom }}</td>
+
+          <td>
+            <i class="fas fa-edit mr-2" (click)="editTerrains(terrain)" style="color: blue;"></i>
+            <i class="fas fa-trash" (click)="deleteTerrains(terrain.id)" style="margin-left: 35px; color: red;"></i>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="terrains && terrains.length === 0">
+    <p>Aucun terrain trouvé.</p>
+  </div>
+
+  <form *ngIf="afficherForm === 'createForm' || afficherForm === 'editForm'" [formGroup]="TerrainForm" style="margin-left: 30px;" (submit)="saveOrUpdateTerrains()" id="createForm" enctype="multipart/form-data">
+    <div class="form-group row input-group-sm mb-3">
+      <label for="nom" class="col-sm-3 col-form-label">Nom</label>
+      <div class="col-sm-9">
+        <input type="text" id="nom" formControlName="nom" required class="form-control" placeholder="Nom">
+      </div>
+    </div>
+  
+    <div class="form-group">
+      <input type="file" class="form-control" (change)="onFileSelectedTerrains($event)">
+    </div>
+    
+    <br>
+    <button class="btn btn-primary login-btn" type="submit">{{ selectedTerrain ? 'Modifier' : 'Ajouter' }}</button>
+    <button class="btn btn login-btn" type="button" (click)="closeForm()" style="margin-left: 11px; color: red;">Fermer formulaire</button>
+  </form>
+</div>
+
+
+<!-- --------------------------reservation------------------------------------------------- -->
+
+
+<div *ngIf="displayReservations">
+  <div *ngIf="reservations && reservations.length > 0">
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Date</th>
+          <th>Heure</th>
+          <th>Status</th>
+          <th>Nom de l'utilisateur</th>
+          <th>Cours reservé</th>
+          <th>Terrain reservé</th>
+          <th>Coach reservé</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let reservation of reservations">
+          <td>{{ reservation.id }}</td>
+          <td>{{ reservation.date }}</td>
+          <td>{{ reservation.heure }}</td>
+          <td>
+            <select [(ngModel)]="reservation.status">
+              <option *ngFor="let status of statusOptions" [value]="status">{{ status }}</option>
+            </select>
+          </td>
+          <td>{{ reservation.user.username }}</td>
+          <td>{{ reservation.cours?.nom }}</td>
+          <td>{{ reservation.terrain?.nom }}</td>
+          <td>{{ reservation.coach?.nom }}</td>
+          <td>
+            <button (click)="updateReservationStatus(reservation)" class="btn btn-primary btn-sm">Modifier status</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div *ngIf="reservations && reservations.length === 0">
+    <p>Aucune reservation trouvée.</p>
+  </div>
+</div>
+
+
+
+
+<app-footer></app-footer>
+
+</div>

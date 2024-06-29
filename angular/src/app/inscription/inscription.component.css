@@ -1,0 +1,123 @@
+
+
+ 
+  
+
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.transparent-form {
+    background: rgba(255, 255, 255, 0.90);
+   
+    /* background-image: url(../../assets/images/372141000_7477359265612745_237910005164635900_n.jpg);  */
+    padding: 30px; /* Augmenter le padding */
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3); /* Ombre */
+    width: 500px; /* Augmenter la largeur */
+    max-width: 80%; /* Limiter la largeur maximale */
+    margin: 0 auto; /* Centrer horizontalement */
+}
+
+h2 {
+    color:rgb(237, 237, 18); /* Couleur du titre en blanc */
+}
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    color:black; /* Couleur des labels en blanc */
+}
+
+
+.form-group {
+    margin-bottom: 10px;
+}
+
+.duration-options {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 10px;
+}
+
+.duration-options .form-group {
+    display: flex;
+    align-items: center;
+}
+
+.duration-options .form-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+.bouton {
+    width: 100%;
+    padding: 12px;
+    background-color:yellow; /* Jaune */
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+     cursor: pointer; 
+    transition: background-color 0.3s ease;
+   
+}
+
+.bouton:hover {
+    background-color:yellow; /* Jaune foncé au survol */
+}
+.form-group input[type="text"],
+.form-group input[type="date"],
+.form-group input[type="email"],
+.form-group input[type="password"],
+.form-group input[type="tel"],
+.form-group input[type="radio"],
+.form-group input[type="checkbox"] {
+    width: 100%; /* Largeur à 100% */
+    padding: 10px; /* Augmenter la hauteur du champ */
+    box-sizing: border-box; /* Inclure le padding et la bordure dans la largeur */
+}
+
+
+.button-container {
+    display: flex;
+    justify-content: space-between; /* Pour séparer les boutons et les placer en face l'un de l'autre */
+    width: 100%; /* Ajuster la largeur à 100% */
+    max-width: 400px; /* Limiter la largeur maximale */
+    margin: 0 auto; /* Centrer horizontalement */
+    margin-top: 20px; /* Espacement depuis le haut */
+}
+
+.bouton {
+    background-color:black;
+    color: #fff;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+
+.bouton:hover {
+    background-color:yellow; /* Jaune foncé au survol */
+}
+
+.valider {
+    margin-right: 10px; /* Espacement entre les boutons */
+    font-size: 20px; /* Taille du texte */
+    padding: 10px 40px; /* Augmenter le padding pour agrandir le bouton */
+    width: auto; /* Permettre au bouton de s'ajuster automatiquement à la largeur du contenu */
+
+}
+
+.annuler {
+    margin-left: 10px; /* Espacement entre les boutons */
+    font-size: 20px; /* Taille du texte */
+    padding: 10px 40px; /* Augmenter le padding pour agrandir le bouton */
+    width: auto; /* Permettre au bouton de s'ajuster automatiquement à la largeur du contenu */
+}

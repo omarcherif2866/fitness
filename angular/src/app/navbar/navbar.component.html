@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+<header>
+  <nav class="navbar">
+    <div class="container">
+      <a href="" class="text-nowrap logo-img">
+        <img alt="Couplage Téléphonique Informatique : CTI Network" src="../assets/images/logo (1).png" width="180" />
+      </a>
+      <ul class="nav-links">
+        <li><a routerLink="/home">Home</a></li>
+        <li><a routerLink="/activite">Activities</a></li>
+        <li><a routerLink="/coach">Coachs</a></li>
+        <li><a routerLink="/terrain">Terrains</a></li>
+        <li class="dropdown-hover">
+          <a class="dropdown-toggle" data-toggle="dropdown">Planification</a>
+          <ul class="dropdown-menu">
+            <li><a routerLink="/planificationCours">Planification Cours</a></li>
+            <li><a routerLink="/planificationCoach">Planification Coach</a></li>
+          </ul>
+        </li>
+        <!-- <li><a routerLink="/tarif">Tarif</a></li> -->
+        <li><a routerLink="/contact">Contact</a></li>
+        <li><a routerLink="/registre">Sign up</a></li>
+        <li><a routerLink="/connecter">Sign in</a></li>
+        <li>
+          <a [routerLink]="['/profile', userId]"><i class="fas fa-user-circle" style="color: white;"></i></a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</header>
+

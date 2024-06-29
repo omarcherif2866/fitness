@@ -1,0 +1,5 @@
+.map iframe {
+    width: 100%; /* Largeur de la carte sur toute la largeur disponible */
+    height: 500px; /* Hauteur de la carte, ajustez selon vos besoins */
+    max-width: 1000px; /* Largeur maximale de la carte */
+}

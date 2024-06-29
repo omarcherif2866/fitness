@@ -1,0 +1,41 @@
+footer {
+    background-color:black; /* Noir */
+    color: #ffffff; /* Blanc */
+    padding: 50px 0;
+    margin-top: 0px;
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.footer-section {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.footer-section h4 {
+    color:yellow; /* Jaune */
+}
+
+.footer-section p {
+    line-height: 1.6;
+}
+
+
+.bi-telephone-inbound{
+    margin-right: 5%;
+}
+
+.bi-geo-alt{
+    margin-right: 5%;
+}
+
+.bl-telephone-inbound{
+    margin-right: 5%;
+}

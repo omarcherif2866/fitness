@@ -1,0 +1,116 @@
+<app-navbar></app-navbar>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-wrap">
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th>LUNDI</th>
+                <th>MARDI</th>
+                <th>MERCREDI</th>
+                <th>JEUDI</th>
+                <th>VENDREDI</th>
+                <th>SAMEDI</th>
+                <th>DIMANCHE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div *ngFor="let cours of coursParJour.LUNDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCours(cours, 'LUNDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ cours.nom }}</strong><br>{{ cours.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let cours of coursParJour.MARDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCours(cours, 'MARDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ cours.nom }}</strong><br>{{ cours.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let cours of coursParJour.MERCREDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCours(cours, 'MERCREDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ cours.nom }}</strong><br>{{ cours.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let cours of coursParJour.JEUDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCours(cours, 'JEUDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ cours.nom }}</strong><br>{{ cours.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let cours of coursParJour.VENDREDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCours(cours, 'VENDREDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ cours.nom }}</strong><br>{{ cours.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let cours of coursParJour.SAMEDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCours(cours, 'SAMEDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ cours.nom }}</strong><br>{{ cours.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let cours of coursParJour.DIMANCHE">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCours(cours, 'DIMANCHE')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ cours.nom }}</strong><br>{{ cours.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<app-footer></app-footer>

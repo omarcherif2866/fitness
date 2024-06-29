@@ -1,0 +1,116 @@
+<app-navbar></app-navbar>
+
+<section class="ftco-section">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-6 text-center mb-5"></div>
+    </div>
+    <div class="row">
+      <div class="col-md-12">
+        <div class="table-wrap">
+          <table class="table table-bordered text-center">
+            <thead>
+              <tr>
+                <th>LUNDI</th>
+                <th>MARDI</th>
+                <th>MERCREDI</th>
+                <th>JEUDI</th>
+                <th>VENDREDI</th>
+                <th>SAMEDI</th>
+                <th>DIMANCHE</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div *ngFor="let coach of coachParJour.LUNDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + coach.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCoach(coach, 'LUNDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ coach.nom }}</strong><br>{{ coach.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let coach of coachParJour.MARDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + coach.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCoach(coach, 'MARDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ coach.nom }}</strong><br>{{ coach.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let coach of coachParJour.MERCREDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + coach.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCoach(coach, 'MERCREDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ coach.nom }}</strong><br>{{ coach.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let coach of coachParJour.JEUDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + coach.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCoach(coach, 'JEUDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ coach.nom }}</strong><br>{{ coach.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let coach of coachParJour.VENDREDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + coach.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCoach(coach, 'VENDREDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ coach.nom }}</strong><br>{{ coach.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let coach of coachParJour.SAMEDI">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + coach.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCoach(coach, 'SAMEDI')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ coach.nom }}</strong><br>{{ coach.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+                <td>
+                  <div *ngFor="let coach of coachParJour.DIMANCHE">
+                    <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + coach.image + ')'"></div>
+                    <a href="javascript:void(0)" 
+                       (click)="reserveCoach(coach, 'DIMANCHE')" 
+                       data-toggle="tooltip" 
+                       title="Cliquez pour réserver">
+                      <strong>{{ coach.nom }}</strong><br>{{ coach.heures.join(', ') }}
+                    </a>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script src="js/jquery.min.js"></script>
+<script src="js/popper.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/main.js"></script>
+
+<app-footer></app-footer>
