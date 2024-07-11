@@ -1,6 +1,6 @@
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, tap, throwError } from 'rxjs';
+import { BehaviorSubject, Observable, catchError, tap, throwError } from 'rxjs';
 import { Role, User } from '../models/user.models';
 import {jwtDecode} from "jwt-decode";
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -12,12 +12,20 @@ export class AuthService {
    private apiUrl="http://localhost:8090/api/auth";
    private localStorageKey = "userAuth"; // Clé pour le localStorage
    private jwtHelper: JwtHelperService;
+   private loggedIn = new BehaviorSubject<boolean>(false);
 
    constructor(private httpClient:HttpClient) {
     this.jwtHelper = new JwtHelperService();
+    const userData = localStorage.getItem(this.localStorageKey);
+    if (userData) {
+      const parsedData = JSON.parse(userData);
+      this.loggedIn.next(!!parsedData.accessToken); // Initialiser l'état de connexion
+    }
     }
 
-
+    get isLoggedIn() {
+      return this.loggedIn.asObservable();
+    }
 
    login(loginData: { username: string; password: string }): Observable<any> {
     return this.httpClient.post<any>(`${this.apiUrl}/login`, loginData)
@@ -25,6 +33,8 @@ export class AuthService {
         tap(response => {
           // Sauvegarder l'utilisateur et le token dans le localStorage
           localStorage.setItem(this.localStorageKey, JSON.stringify(response));
+          this.loggedIn.next(true);
+
         }),
         catchError(error => {
           // Gérer les erreurs ici si nécessaire

@@ -4,6 +4,15 @@
  * Copyright 2011-2019 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+
+ /* reservation.component.css */
+
+/* a.disabled {
+  pointer-events: none;
+  color: grey;
+  cursor: not-allowed;
+} */
+
  :root {
   --blue: #007bff;
   --indigo: #6610f2;

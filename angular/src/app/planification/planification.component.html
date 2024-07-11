@@ -27,6 +27,7 @@
                     <div class="img rounded-circle mb-2" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
                     <a href="javascript:void(0)" 
                        (click)="reserveCours(cours, 'LUNDI')" 
+                       
                        data-toggle="tooltip" 
                        title="Cliquez pour réserver">
                       <strong>{{ cours.nom }}</strong><br>{{ cours.heures.join(', ') }}

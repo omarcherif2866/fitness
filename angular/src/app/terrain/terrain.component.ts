@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Terrain } from '../models/terrain';
 import { TerrainService } from '../services/terrain.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-terrain',
@@ -10,11 +11,15 @@ import { Router } from '@angular/router';
 })
 export class TerrainComponent {
   terrains: Terrain[] = [];
+  isLoggedIn: boolean = false;
 
-  constructor(private terrainsService: TerrainService,private router: Router) {}
+  constructor(private terrainsService: TerrainService,private router: Router, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.getAllTerrains();
+    this.authService.isLoggedIn.subscribe(status => {
+      this.isLoggedIn = status;
+    });
   }
 
   

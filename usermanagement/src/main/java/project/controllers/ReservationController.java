@@ -76,7 +76,7 @@ public class ReservationController {
 
             // Envoyer un e-mail de notification à l'utilisateur
             String userEmail = updatedReservation.getUser().getEmail();
-            String emailTo = "comar2866@gmail.com";
+            String emailTo = userEmail;
             String emailSubject = "Mise à jour du statut de votre réservation";
             String emailBody = "Bonjour " + updatedReservation.getUser().getUsername() + ",\n\n" +
                     "Le statut de votre réservation pour l'activité " + updatedReservation.getCours().getNom() + " a été mis à jour à '' " + status + "  ''.\n\n" +

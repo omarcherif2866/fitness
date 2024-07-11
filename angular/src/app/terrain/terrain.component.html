@@ -26,9 +26,11 @@
             </div>
           </div>
         </div>
-        <div class="button-container">
+
+        <div class="button-container" *ngIf="isLoggedIn">
           <button class="bouton valider" (click)="reserve(tr.id)">Réserver</button>
         </div>
+
       </div>
     </div>
   </div>
