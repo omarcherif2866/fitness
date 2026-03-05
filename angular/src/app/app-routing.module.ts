@@ -23,6 +23,7 @@ import { CoachComponent } from './coach/coach.component';
 import { PlanificationCoachComponent } from './planification-coach/planification-coach.component';
 
 const routes: Routes = [
+  { path: '', component: HomeComponent },
  {path : 'home', component: HomeComponent} ,
  { path: 'registre', component: InscriptionComponent },
  {path : 'tarif' , component: TarifComponent},
