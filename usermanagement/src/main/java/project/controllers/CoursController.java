@@ -59,7 +59,6 @@ public class CoursController {
             // Créer un nouveau cours
             Cours cours = new Cours();
             cours.setNom(nom);
-            cours.setImage(fileName);
             cours.setDates(dates);
             cours.setHeures(heures);
               if (image != null && !image.isEmpty()) {
