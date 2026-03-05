@@ -18,15 +18,27 @@
             <li><a routerLink="/planificationCoach">Planification Coach</a></li>
           </ul>
         </li>
-        <!-- <li><a routerLink="/tarif">Tarif</a></li> -->
         <li><a routerLink="/contact">Contact</a></li>
-        <li><a routerLink="/registre">Sign up</a></li>
-        <li><a routerLink="/connecter">Sign in</a></li>
-        <li>
-          <a [routerLink]="['/profile', userId]"><i class="fas fa-user-circle" style="color: white;"></i></a>
-        </li>
+
+        <!-- ✅ Si NON connecté -->
+        <ng-container *ngIf="!isLoggedIn">
+          <li><a routerLink="/registre">Sign up</a></li>
+          <li><a routerLink="/connecter">Sign in</a></li>
+        </ng-container>
+
+        <!-- ✅ Si connecté -->
+        <ng-container *ngIf="isLoggedIn">
+          <li>
+            <a [routerLink]="['/profile', userId]">
+              <i class="fas fa-user-circle" style="color: white; font-size: 1.5rem;"></i>
+            </a>
+          </li>
+          <li>
+            <a (click)="logout()" style="cursor: pointer;">Se déconnecter</a>
+          </li>
+        </ng-container>
+
       </ul>
     </div>
   </nav>
 </header>
-
