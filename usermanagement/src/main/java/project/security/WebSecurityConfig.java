@@ -48,7 +48,7 @@ public class WebSecurityConfig  {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         http
                 .csrf(AbstractHttpConfigurer::disable)
-                .cors(cors -> corsConfigurationSource()) // Ajoutez cette ligne
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))// Ajoutez cette ligne
                 .exceptionHandling(exception -> exception.authenticationEntryPoint(unauthorizedHandler))
                 .authorizeHttpRequests(req -> req.requestMatchers(WHITE_LIST_URL).permitAll()
                         .anyRequest().authenticated()
@@ -62,7 +62,10 @@ public class WebSecurityConfig  {
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:4200")); // Remplacez par l'URL de votre application cliente
+        configuration.setAllowedOrigins(Arrays.asList(
+            "http://localhost:4200",
+            "https://fitness-virid-eta.vercel.app"
+        ));
         configuration.setAllowedMethods(Arrays.asList("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(Arrays.asList("authorization", "content-type", "x-auth-token"));
         configuration.setExposedHeaders(Arrays.asList("x-auth-token"));
