@@ -36,7 +36,7 @@ export class TerrainComponent {
 }
 
 getImageUrl(imageName: string): string {
-  return `http://localhost:8090/terrain/image/${imageName}`;
+  return `https://stellar-integrity-production.up.railway.app/terrain/image/${imageName}`;
 }
 
 reserve(terrainId: number) {

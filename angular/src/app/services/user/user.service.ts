@@ -7,7 +7,7 @@ import { User } from 'src/app/models/user.models';
   providedIn: 'root'
 })
 export class UserService {
-  private apiUrl="http://localhost:8090/users/";
+  private apiUrl="https://stellar-integrity-production.up.railway.app/users/";
  
 
 

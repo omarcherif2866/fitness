@@ -8,7 +8,7 @@ import { Observable, catchError } from 'rxjs';
 })
 export class ReservationService {
 
-  private apiUrl="http://localhost:8090/reservation";
+  private apiUrl="https://stellar-integrity-production.up.railway.app/reservation";
 
   constructor(private httpClient: HttpClient) { }
 

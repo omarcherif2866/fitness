@@ -1,1 +1,1 @@
-{"/api": { "target": " http://localhost:8090 ", "secure": false }}
+{"/api": { "target": " https://stellar-integrity-production.up.railway.app ", "secure": false }}

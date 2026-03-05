@@ -9,7 +9,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root'
 })
 export class AuthService {
-   private apiUrl="http://localhost:8090/api/auth";
+   private apiUrl="https://stellar-integrity-production.up.railway.app/api/auth";
    private localStorageKey = "userAuth"; // Clé pour le localStorage
    private jwtHelper: JwtHelperService;
    private loggedIn = new BehaviorSubject<boolean>(false);
@@ -107,7 +107,7 @@ export class AuthService {
 
   
   updateUser(id: number, user: User): Observable<User> {
-    return this.httpClient.put<User>(`http://localhost:8090/api/auth/${id}`, user, {
+    return this.httpClient.put<User>(`https://stellar-integrity-production.up.railway.app/api/auth/${id}`, user, {
       headers: new HttpHeaders().set('Content-Type', 'application/json')
     });
   }

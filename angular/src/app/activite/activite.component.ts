@@ -31,7 +31,7 @@ export class ActiviteComponent {
  }
 
  getImageUrl(imageName: string): string {
-   return `http://localhost:8090/cours/image/${imageName}`;
+   return `https://stellar-integrity-production.up.railway.app/cours/image/${imageName}`;
  }
 
  chunkArray(array: any[], chunkSize: number): any[][] {

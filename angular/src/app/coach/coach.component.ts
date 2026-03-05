@@ -31,7 +31,7 @@ export class CoachComponent {
 }
 
 getImageUrl(imageName: string): string {
-  return `http://localhost:8090/coach/image/${imageName}`;
+  return `https://stellar-integrity-production.up.railway.app/coach/image/${imageName}`;
 }
 
 reserve(coachId: number) {

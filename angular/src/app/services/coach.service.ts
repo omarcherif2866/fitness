@@ -8,7 +8,7 @@ import { Observable, catchError } from 'rxjs';
   providedIn: 'root'
 })
 export class CoachService {
-  private apiUrl="http://localhost:8090/coach";
+  private apiUrl="https://stellar-integrity-production.up.railway.app/coach";
 
   constructor(private httpClient: HttpClient) { }
 

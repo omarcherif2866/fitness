@@ -8,7 +8,7 @@ import { JourSemaine } from '../models/coach';
   providedIn: 'root'
 })
 export class CoursService {
-  private apiUrl="http://localhost:8090/cours";
+  private apiUrl="https://stellar-integrity-production.up.railway.app/cours";
 
   constructor(private httpClient: HttpClient) { }
 

@@ -8,7 +8,7 @@ import { Observable, catchError } from 'rxjs';
 })
 export class TerrainService {
 
-  private apiUrl="http://localhost:8090/terrain";
+  private apiUrl="https://stellar-integrity-production.up.railway.app/terrain";
 
   constructor(private httpClient: HttpClient) { }
 
