@@ -1,4 +1,4 @@
-package com.example.project.service;
+package project.service;
 
 import com.cloudinary.Cloudinary;
 import com.cloudinary.utils.ObjectUtils;
