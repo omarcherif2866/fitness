@@ -25,6 +25,7 @@ import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import project.service.CloudinaryService;
 
 @RestController
 @RequestMapping("/terrain")
@@ -33,23 +34,24 @@ public class TerrainController {
 
     private final ITerrainService iTerrainService;
     private final FileStorageService fileStorageService;
-
+    private final CloudinaryService cloudinaryService; // ← ajouter
     @PostMapping()
     public ResponseEntity<?> addTerrain(@RequestParam("nom") String nom,
-                                      @RequestParam("image") MultipartFile imageFile) {
+                                        @RequestParam(value = "image", required = false) MultipartFile image) {
         try {
             // Validation des paramètres
-            if (nom == null || nom.isEmpty() || imageFile.isEmpty()) {
+            if (nom == null || nom.isEmpty() || image == null || image.isEmpty()) {
                 return ResponseEntity.badRequest().body("Invalid input parameters.");
             }
 
             // Stocker le fichier d'image
-            String fileName = fileStorageService.storeFile(imageFile);
 
             Terrain terrain = new Terrain();
             terrain.setNom(nom);
-            terrain.setImage(fileName);
-
+             if (image != null && !image.isEmpty()) {
+                    String imageUrl = cloudinaryService.uploadImage(image, "fitness/terrain");
+                    terrain.setImage(imageUrl);
+                }
 
 
             Terrain savedTerrain = iTerrainService.addTerrain(terrain);
@@ -82,7 +84,7 @@ public class TerrainController {
     public ResponseEntity<Terrain> updateTerrain(
             @PathVariable Long id,
             @RequestParam("nom") String nom,
-            @RequestParam(value = "image", required = false) MultipartFile imageFile) {
+            @RequestParam(value = "image", required = false) MultipartFile image) {
         try {
             Terrain existingTerrain = iTerrainService.getTerrainById(id);
 
@@ -90,17 +92,10 @@ public class TerrainController {
                 existingTerrain.setNom(nom);
             }
 
-            if (imageFile != null && !imageFile.isEmpty()) {
-                String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
-                String imagePath = fileName;
-                Path path = Paths.get("images/");
-                if (!Files.exists(path)) {
-                    Files.createDirectories(path);
+             if (image != null && !image.isEmpty()) {
+                    String imageUrl = cloudinaryService.uploadImage(image, "fitness/terrain");
+                    existingTerrain.setImage(imageUrl);
                 }
-                Files.copy(imageFile.getInputStream(), path.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
-                existingTerrain.setImage(imagePath);
-            }
-
 
 
             Terrain updatedTerrain = iTerrainService.updateTerrain(id, existingTerrain);

@@ -9,7 +9,7 @@ import lombok.Setter;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -41,8 +41,10 @@ public class Coach {
             joinColumns = @JoinColumn(name = "coach_id"), // Clé étrangère du coach
             inverseJoinColumns = @JoinColumn(name = "cours_id") // Clé étrangère du cours
     )
+    @JsonIgnoreProperties("coaches") // ← ajouter
     private List<Cours> cours;
 
     @OneToMany(mappedBy = "coach")
+    @JsonIgnoreProperties("coach") // ← ajouter
     private List<Reservation> reservations = new ArrayList<>();
 }

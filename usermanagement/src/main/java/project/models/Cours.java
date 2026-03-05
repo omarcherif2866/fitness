@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 @Getter
 @Setter
 @AllArgsConstructor
@@ -36,8 +36,10 @@ public class Cours {
 
 
     @OneToMany(mappedBy = "cours")
+    @JsonIgnoreProperties("cours")
     private List<Reservation> reservations = new ArrayList<>();
 
     @ManyToMany(mappedBy = "cours")
+    @JsonIgnoreProperties("cours")
     private List<Coach> coaches;
 }

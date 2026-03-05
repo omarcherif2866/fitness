@@ -26,6 +26,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
+import project.service.CloudinaryService;
 
 @RestController
 @RequestMapping("/coach")
@@ -34,31 +35,35 @@ public class CoachController {
 
     private final ICoachService iCoachService;
     private final FileStorageService fileStorageService;
+    private final CloudinaryService cloudinaryService; // ← ajouter
 
     @PostMapping()
     public ResponseEntity<?> addCoach(@RequestParam("nom") String nom,
                                       @RequestParam("prenom") String prenom,
                                       @RequestParam("specialite") String specialite,
-                                      @RequestParam("image") MultipartFile imageFile,
+                                      @RequestParam(value = "image", required = false) MultipartFile image,
                                         @RequestParam("dates") List<JourSemaine> dates,
                                       @RequestParam("heures") List<String> heures){
         try {
             // Validation des paramètres
-            if (nom == null || nom.isEmpty() || imageFile.isEmpty() || prenom == null || prenom.isEmpty() || specialite == null || specialite.isEmpty()) {
+            if (nom == null || nom.isEmpty() || image == null || image.isEmpty() || prenom == null || prenom.isEmpty() || specialite == null || specialite.isEmpty()) {
                 return ResponseEntity.badRequest().body("Invalid input parameters.");
             }
 
             // Stocker le fichier d'image
-            String fileName = fileStorageService.storeFile(imageFile);
+
 
             Coach coach = new Coach();
             coach.setNom(nom);
-            coach.setImage(fileName);
+
             coach.setPrenom(prenom);
             coach.setSpecialite(specialite);
             coach.setDates(dates);
             coach.setHeures(heures);
-
+                if (image != null && !image.isEmpty()) {
+                    String imageUrl = cloudinaryService.uploadImage(image, "fitness/coach");
+                    coach.setImage(imageUrl);
+                }
             Coach savedCoach = iCoachService.addCoach(coach);
 
             return ResponseEntity.ok(savedCoach);
@@ -90,7 +95,7 @@ public class CoachController {
             @RequestParam("nom") String nom,
             @RequestParam("prenom") String prenom,
             @RequestParam("specialite") String specialite,
-            @RequestParam(value = "image", required = false) MultipartFile imageFile,
+            @RequestParam(value = "image", required = false) MultipartFile image,
             @RequestParam(value = "dates", required = false) List<String> dates,
             @RequestParam(value = "heures", required = false) List<String> heures) {
         try {
@@ -105,16 +110,10 @@ public class CoachController {
             if (specialite != null && !specialite.isEmpty()) {
                 existingCoach.setSpecialite(specialite);
             }
-            if (imageFile != null && !imageFile.isEmpty()) {
-                String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
-                String imagePath =  fileName;
-                Path path = Paths.get("images/");
-                if (!Files.exists(path)) {
-                    Files.createDirectories(path);
+                if (image != null && !image.isEmpty()) {
+                    String imageUrl = cloudinaryService.uploadImage(image, "fitness/coach");
+                    existingCoach.setImage(imageUrl);
                 }
-                Files.copy(imageFile.getInputStream(), path.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
-                existingCoach.setImage(imagePath);
-            }
             List<JourSemaine> jourSemaineList = null;
             if (dates != null) {
                 jourSemaineList = dates.stream()

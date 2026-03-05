@@ -30,6 +30,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+import project.service.CloudinaryService;
 
 @RestController
 @RequestMapping("/cours")
@@ -38,22 +39,22 @@ public class CoursController {
 
     private final ICoursService iCoursService;
     private final FileStorageService fileStorageService;
+    private final CloudinaryService cloudinaryService; // ← ajouté
 
     @PostMapping()
     public ResponseEntity<?> addCours(
             @RequestParam("nom") String nom,
-            @RequestParam("image") MultipartFile imageFile,
+            @RequestParam(value = "image", required = false) MultipartFile image,
             @RequestParam("dates") List<JourSemaine> dates,
             @RequestParam("heures") List<String> heures) {
 
         try {
             // Validation des paramètres
-            if (nom == null || nom.isEmpty() || imageFile.isEmpty() || dates.isEmpty() || heures.isEmpty()) {
+            if (nom == null || nom.isEmpty() || image == null || image.isEmpty() || dates.isEmpty() || heures.isEmpty()) {
                 return ResponseEntity.badRequest().body("Invalid input parameters.");
             }
 
             // Stocker le fichier d'image
-            String fileName = fileStorageService.storeFile(imageFile);
 
             // Créer un nouveau cours
             Cours cours = new Cours();
@@ -61,7 +62,10 @@ public class CoursController {
             cours.setImage(fileName);
             cours.setDates(dates);
             cours.setHeures(heures);
-
+              if (image != null && !image.isEmpty()) {
+                    String imageUrl = cloudinaryService.uploadImage(image, "fitness/cours");
+                    cours.setImage(imageUrl);
+                }
             // Sauvegarder le cours
             Cours savedCours = iCoursService.addCours(cours);
 
@@ -92,7 +96,7 @@ public class CoursController {
     public ResponseEntity<Cours> updateCours(
             @PathVariable Long id,
             @RequestParam("nom") String nom,
-            @RequestParam(value = "image", required = false) MultipartFile imageFile,
+            @RequestParam(value = "image", required = false) MultipartFile image,
             @RequestParam(value = "dates", required = false) List<String> dates,
             @RequestParam(value = "heures", required = false) List<String> heures) {
         try {
@@ -102,16 +106,10 @@ public class CoursController {
                 existingCours.setNom(nom);
             }
 
-            if (imageFile != null && !imageFile.isEmpty()) {
-                String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
-                String imagePath = fileName;
-                Path path = Paths.get("images/");
-                if (!Files.exists(path)) {
-                    Files.createDirectories(path);
+              if (image != null && !image.isEmpty()) {
+                    String imageUrl = cloudinaryService.uploadImage(image, "fitness/cours");
+                    existingCours.setImage(imageUrl);
                 }
-                Files.copy(imageFile.getInputStream(), path.resolve(fileName), StandardCopyOption.REPLACE_EXISTING);
-                existingCours.setImage(imagePath);
-            }
 
             if (dates != null) {
                 List<JourSemaine> jourSemaineList = dates.stream()
