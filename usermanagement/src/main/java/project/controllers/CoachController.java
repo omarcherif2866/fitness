@@ -138,34 +138,34 @@ public class CoachController {
     }
 
 
-    @GetMapping("/image/{fileName:.+}")
-    public ResponseEntity<UrlResource> getImage(@PathVariable String fileName) {
-        // Load file as Resource
-        Path filePath = fileStorageService.loadFileAsPath(fileName);
-        UrlResource resource;
-        try {
-            resource = new UrlResource(filePath.toUri());
-        } catch (Exception e) {
-            throw new RuntimeException("File not found: " + fileName);
-        }
+    // @GetMapping("/image/{fileName:.+}")
+    // public ResponseEntity<UrlResource> getImage(@PathVariable String fileName) {
+    //     // Load file as Resource
+    //     Path filePath = fileStorageService.loadFileAsPath(fileName);
+    //     UrlResource resource;
+    //     try {
+    //         resource = new UrlResource(filePath.toUri());
+    //     } catch (Exception e) {
+    //         throw new RuntimeException("File not found: " + fileName);
+    //     }
 
-        // Try to determine file's content type
-        String contentType;
-        try {
-            contentType = Files.probeContentType(filePath);
-        } catch (IOException e) {
-            contentType = "application/octet-stream";
-        }
+    //     // Try to determine file's content type
+    //     String contentType;
+    //     try {
+    //         contentType = Files.probeContentType(filePath);
+    //     } catch (IOException e) {
+    //         contentType = "application/octet-stream";
+    //     }
 
-        // For inline display, set content disposition
-        HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.parseMediaType(contentType));
-        headers.setContentDispositionFormData("inline", fileName);
+    //     // For inline display, set content disposition
+    //     HttpHeaders headers = new HttpHeaders();
+    //     headers.setContentType(MediaType.parseMediaType(contentType));
+    //     headers.setContentDispositionFormData("inline", fileName);
 
-        return ResponseEntity.ok()
-                .headers(headers)
-                .body(resource);
-    }
+    //     return ResponseEntity.ok()
+    //             .headers(headers)
+    //             .body(resource);
+    // }
 
     @GetMapping("/bydates/{jour}")
     public ResponseEntity<List<Coach>> getCoachByDates(@PathVariable JourSemaine jour) {
