@@ -14,7 +14,7 @@
     </div>
     <div class="row">
       <div class="col-lg-4 col-sm-6" *ngFor="let tr of terrains">
-        <div class="ts-item set-bg" [style.backgroundImage]="'url(' + getImageUrl(tr.image) + ')'">
+        <div class="ts-item set-bg" [style.backgroundImage]="tr.image">
           <div class="ts_text">
             <h4>{{ tr.nom }} </h4>
             <div class="tt_social">
