@@ -163,12 +163,15 @@ transition: width 0.6s ease;
 display: none;
 }
 
-.card-img-top{
-  width: 300px;
-  height: 250px;
-  background-color: #fff;
-  -webkit-transition: height 0.8s ease;
-  transition: height 0.8s ease;
+.card-img-top {
+    width: 300px;
+    height: 250px;
+    background-color: #fff;
+    background-size: cover;        /* ← ajouter */
+    background-position: center;   /* ← ajouter */
+    background-repeat: no-repeat;  /* ← ajouter */
+    -webkit-transition: height 0.8s ease;
+    transition: height 0.8s ease;
 }
 
 @media (max-width: 1120px){
