@@ -14,7 +14,7 @@
     </div>
     <div class="row">
       <div class="col-lg-4 col-sm-6" *ngFor="let coach of coachs">
-        <div class="ts-item set-bg" [style.backgroundImage]="coach.image">
+        <div class="ts-item set-bg" [style.backgroundImage]="'url(' + coach.image + ')'">
           <div class="ts_text">
             <h4>{{ coach.nom }} {{ coach.prenom }}</h4>
             <span>{{ coach.specialite }}</span><br>

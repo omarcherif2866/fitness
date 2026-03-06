@@ -11,7 +11,7 @@
             <div *ngFor="let cours of chunk" class="col-md-4 mb-4">
               <div class="underlay">
                 <div class="card">
-                  <div class="card-img-top" [style.backgroundImage]="cours.image"></div>
+                  <div class="card-img-top" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
                   <div class="card-block text-center">
                     <h5 class="card-title" style="font-family: 'Anton', sans-serif">{{ cours.nom }}</h5>
 
