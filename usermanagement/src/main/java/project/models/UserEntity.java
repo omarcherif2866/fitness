@@ -1,5 +1,6 @@
 package project.models;
 
+        import com.fasterxml.jackson.annotation.JsonIgnore;
         import jakarta.persistence.*;
         import lombok.*;
 
@@ -35,6 +36,7 @@ public class UserEntity {
 
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 
 

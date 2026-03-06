@@ -1,5 +1,6 @@
 package project.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +36,7 @@ public class Coach {
     @ElementCollection
     private List<String> heures = new ArrayList<>();
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "cours_coach", // Nom de la table d'association
             joinColumns = @JoinColumn(name = "coach_id"), // Clé étrangère du coach
@@ -44,7 +45,7 @@ public class Coach {
     @JsonIgnoreProperties("coaches") // ← ajouter
     private List<Cours> cours;
 
-    @OneToMany(mappedBy = "coach")
-    @JsonIgnoreProperties("coach") // ← ajouter
+    @OneToMany(mappedBy = "coach", fetch = FetchType.EAGER)
+    @JsonIgnore
     private List<Reservation> reservations = new ArrayList<>();
 }

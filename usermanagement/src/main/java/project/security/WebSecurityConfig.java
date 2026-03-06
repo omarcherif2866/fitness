@@ -145,10 +145,7 @@ public class WebSecurityConfig {
         CorsConfiguration configuration = new CorsConfiguration();
 
         // Origines autorisées
-        configuration.setAllowedOrigins(Arrays.asList(
-                "http://localhost:4200",
-                "https://fitness-virid-eta.vercel.app"
-        ));
+        configuration.setAllowedOrigins(Arrays.asList("https://fitness-virid-eta.vercel.app"));
 
         // Méthodes autorisées (inclure OPTIONS pour le preflight)
         configuration.setAllowedMethods(Arrays.asList(
