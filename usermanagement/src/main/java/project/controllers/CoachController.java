@@ -1,5 +1,6 @@
 package project.controllers;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.core.io.UrlResource;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -37,6 +38,7 @@ public class CoachController {
     private final FileStorageService fileStorageService;
     private final CloudinaryService cloudinaryService; // ← ajouter
 
+    @Transactional
     @PostMapping()
     public ResponseEntity<?> addCoach(@RequestParam("nom") String nom,
                                       @RequestParam("prenom") String prenom,

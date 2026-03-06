@@ -43,7 +43,7 @@ public class Coach {
             inverseJoinColumns = @JoinColumn(name = "cours_id") // Clé étrangère du cours
     )
     @JsonIgnoreProperties("coaches") // ← ajouter
-    private List<Cours> cours;
+    private List<Cours> cours = new ArrayList<>();
 
     @OneToMany(mappedBy = "coach", fetch = FetchType.EAGER)
     @JsonIgnore
