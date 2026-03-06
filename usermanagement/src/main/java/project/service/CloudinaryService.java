@@ -19,6 +19,21 @@ public class CloudinaryService {
     @Autowired
     private Cloudinary cloudinary;
 
+//    public String uploadImage(MultipartFile file, String folder) throws IOException {
+//        if (file == null || file.isEmpty()) {
+//            throw new IllegalArgumentException("Le fichier est vide ou null");
+//        }
+//
+//        Map<String, Object> uploadParams = new HashMap<>();
+//        uploadParams.put("folder", folder);
+//        uploadParams.put("resource_type", "image");
+//
+//        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), uploadParams);
+//
+//        // ✅ Utiliser secure_url (HTTPS) au lieu de url (HTTP)
+//        return uploadResult.get("secure_url").toString();
+//    }
+
     public String uploadImage(MultipartFile file, String folder) throws IOException {
         if (file == null || file.isEmpty()) {
             throw new IllegalArgumentException("Le fichier est vide ou null");
@@ -27,10 +42,15 @@ public class CloudinaryService {
         Map<String, Object> uploadParams = new HashMap<>();
         uploadParams.put("folder", folder);
         uploadParams.put("resource_type", "image");
+        uploadParams.put("quality", "auto");      // ← compression auto Cloudinary
+        uploadParams.put("fetch_format", "auto"); // ← format optimal (webp si supporté)
 
-        Map uploadResult = cloudinary.uploader().upload(file.getBytes(), uploadParams);
+        // ✅ Stream au lieu de getBytes() — pas de chargement en mémoire
+        Map uploadResult = cloudinary.uploader().uploadLarge(
+                file.getInputStream(),
+                uploadParams
+        );
 
-        // ✅ Utiliser secure_url (HTTPS) au lieu de url (HTTP)
         return uploadResult.get("secure_url").toString();
     }
 
