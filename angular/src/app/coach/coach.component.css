@@ -130,3 +130,42 @@
     cursor: pointer;
 }
 
+@media (max-width: 768px) {
+  .ts-item {
+    height: 350px;
+  }
+
+  .ts-item:hover .ts_text {
+    bottom: -30px;
+  }
+}
+
+@media (max-width: 480px) {
+  .ts-item {
+    height: 300px;
+    margin-bottom: 15px;
+  }
+
+  .ts-item .ts_text {
+    padding: 25px 0 40px;
+    bottom: -200px;
+  }
+
+  .ts-item:hover .ts_text {
+    bottom: -20px;
+  }
+
+  .ts-item .ts_text h4 {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .ts-item .ts_text span {
+    font-size: 10px;
+  }
+
+  .team-section.team-page .ts-item .tt_social a {
+    font-size: 12px;
+    margin-right: 6px;
+  }
+}

@@ -54,3 +54,11 @@ button[type="submit"] {
 button[type="submit"]:hover {
     background-color: yellow;
 }
+
+@media (max-width: 576px) {
+  form {
+    width: 95%;
+    margin-top: 10%;
+    padding: 15px;
+  }
+}

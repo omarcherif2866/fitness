@@ -214,5 +214,50 @@ display: none;
 .news-block{
    max-width: 380px;
 }
+
+@media (max-width: 480px) {
+  .underlay {
+    max-width: 100%;
+    max-height: none;
+  }
+
+  .card {
+    width: 100% !important;
+    max-width: 100% !important;
+    max-height: none !important;
+    margin-bottom: 20px;
+  }
+
+  .card:hover {
+    width: 100% !important;
+    max-width: 100% !important;
+    transform: none !important;
+    margin-right: 0 !important;
+    border: none !important;
+  }
+
+  .card:hover:before {
+    box-shadow: none !important;
+  }
+
+  .card-img-top {
+    width: 100% !important;
+    height: 200px;
+  }
+
+  .card:hover .card-img-top {
+    height: 220px;
+  }
+
+  .card:hover .card-block {
+    width: 100% !important;
+  }
+
+  .news-block {
+    min-width: unset !important;
+    padding: 10px;
+  }
+}
+
 } 
 

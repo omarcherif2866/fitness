@@ -8,7 +8,7 @@
         <div class="card-columns">
           <!-- Utilisation de ngFor pour itérer sur les cours -->
           <div *ngFor="let chunk of chunkArray(courss, 3)" class="row">
-            <div *ngFor="let cours of chunk" class="col-md-4 mb-4">
+            <div *ngFor="let cours of chunk" class="col-12 col-sm-6 col-md-4 mb-4">
               <div class="underlay">
                 <div class="card">
                   <div class="card-img-top" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
