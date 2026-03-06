@@ -48,7 +48,7 @@ public class CoachController {
                                       @RequestParam("heures") List<String> heures){
         try {
             // Validation des paramètres
-            if (nom == null || nom.isEmpty() || image == null || image.isEmpty() || prenom == null || prenom.isEmpty() || specialite == null || specialite.isEmpty()) {
+            if (nom == null || nom.isEmpty() || prenom == null || prenom.isEmpty() || specialite == null || specialite.isEmpty()) {
                 return ResponseEntity.badRequest().body("Invalid input parameters.");
             }
 
