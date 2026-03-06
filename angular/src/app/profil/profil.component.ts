@@ -51,6 +51,8 @@ export class ProfilComponent {
 
   statusOptions: Status[] = [Status.ACCEPTE, Status.REFUSE, Status.EN_ATTENTE];
 
+selectedFile: File | null = null;
+
 
   joursSemaine: JourSemaine[] = [
     JourSemaine.LUNDI,
@@ -258,7 +260,9 @@ export class ProfilComponent {
       formData.append('nom', this.CoachForm.value.nom);
       formData.append('prenom', this.CoachForm.value.prenom);
       formData.append('specialite', this.CoachForm.value.specialite);
-      formData.append('image', this.CoachForm.value.image);
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile, this.selectedFile.name);
+      }
   
       // Ajouter les dates et les heures sélectionnées au formData
       selectedDates.forEach(date => formData.append('dates', date));
@@ -382,14 +386,15 @@ export class ProfilComponent {
     );
   }
   
-  onFileSelected(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.CoachForm.patchValue({
-        image: file
-      });
-    }
+onFileSelected(event: any): void {
+  const file: File = event.target.files[0];
+  if (file) {
+    this.selectedFile = file;  // ← stocker le vrai fichier
+    this.CoachForm.patchValue({
+      image: file.name  // ← juste le nom pour affichage
+    });
   }
+}
 
   initDatesFormArray() {
     const formArray = this.CoachForm.get('dates') as FormArray;
@@ -458,8 +463,10 @@ export class ProfilComponent {
         // Construction des données du cours
         const formData = new FormData();
         formData.append('nom', this.ActiviteForm.value.nom);
-        formData.append('image', this.ActiviteForm.value.image);
-    
+        // formData.append('image', this.ActiviteForm.value.image);
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile, this.selectedFile.name);
+      }    
         // Ajouter les dates et les heures sélectionnées au formData
         selectedDates.forEach(date => formData.append('dates', date));
         selectedHeures.forEach(heure => formData.append('heures', heure));
@@ -582,14 +589,17 @@ export class ProfilComponent {
       );
     }
     
+
+
     onFileSelectedActivites(event: any): void {
-      const file: File = event.target.files[0];
-      if (file) {
-        this.ActiviteForm.patchValue({
-          image: file
-        });
-      }
-    }
+  const file: File = event.target.files[0];
+  if (file) {
+    this.selectedFile = file;  // ← stocker le vrai fichier
+    this.ActiviteForm.patchValue({
+      image: file.name  // ← juste le nom pour affichage
+    });
+  }
+}
   
     initDatesFormArrayActivites() {
       const formArray = this.ActiviteForm.get('dates') as FormArray;
@@ -642,7 +652,9 @@ getAllTerrains(): void {
       // Construction des données du terrain
       const formData = new FormData();
       formData.append('nom', this.TerrainForm.value.nom);
-      formData.append('image', this.TerrainForm.value.image);
+      if (this.selectedFile) {
+        formData.append('image', this.selectedFile, this.selectedFile.name);
+      }
     
       console.log('Données du terrain:', formData);
   
@@ -739,16 +751,17 @@ getAllTerrains(): void {
     );
   }
   
-  onFileSelectedTerrains(event: any): void {
-    const file: File = event.target.files[0];
-    if (file) {
-      this.TerrainForm.patchValue({
-        image: file
-      });
-    }
+
+
+onFileSelectedTerrains(event: any): void {
+  const file: File = event.target.files[0];
+  if (file) {
+    this.selectedFile = file;  // ← stocker le vrai fichier
+    this.TerrainForm.patchValue({
+      image: file.name  // ← juste le nom pour affichage
+    });
   }
-
-
+}
 
   //--------------------------reservation-------------------------------------------------
 
