@@ -1,0 +1,34 @@
+{
+  "coaches": [
+    {
+      "id": 1,
+      "nom": "Ben Ali",
+      "prenom": "Yassine",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772792631/fitness/coach/portrait-muscular-handsome-bodybuilder-sportswear-standing-with-crossed-arms-studio-isolated-gray-background_kz32d3.jpg",
+      "specialite": "Musculation",
+      "users": [],
+      "dates": ["LUNDI", "MERCREDI", "VENDREDI"],
+      "heures": ["08:00", "10:00", "14:00"]
+    },
+    {
+      "id": 2,
+      "nom": "Trabelsi",
+      "prenom": "Daoud",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772792631/fitness/coach/360_F_129574257_dRatFS0QowZBK3bxCA1dqG7ZQeHvYSV2_gouriu.jpg",
+      "specialite": "Yoga",
+      "users": [],
+      "dates": ["MARDI", "JEUDI", "SAMEDI"],
+      "heures": ["09:00", "11:00", "16:00"]
+    },
+    {
+      "id": 3,
+      "nom": "Gharbi",
+      "prenom": "Sana",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772792631/fitness/coach/621501_fvbvyc.jpg",
+      "specialite": "Natation",
+      "users": [],
+      "dates": ["LUNDI", "MARDI", "JEUDI", "DIMANCHE"],
+      "heures": ["07:00", "13:00", "18:00"]
+    }
+  ]
+}

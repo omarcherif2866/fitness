@@ -1,0 +1,34 @@
+{
+  "reservations": [
+    {
+      "id": 1,
+      "date": "2026-04-10",
+      "heure": "09:00",
+      "status": "EN_ATTENTE",
+      "user": { "id": 1, "username": "user1", "email": "user1@example.com" },
+      "cours": { "id": 1, "nom": "Zumba", "image": "assets/images/zumba.jpg", "users": [], "dates": ["LUNDI"], "heures": ["08:00"] },
+      "terrain": null,
+      "coach": null
+    },
+    {
+      "id": 2,
+      "date": "2026-04-11",
+      "heure": "10:00",
+      "status": "ACCEPTE",
+      "user": { "id": 2, "username": "user2", "email": "user2@example.com" },
+      "cours": null,
+      "terrain": { "id": 1, "nom": "Terrain A" },
+      "coach": null
+    },
+    {
+      "id": 3,
+      "date": "2026-04-12",
+      "heure": "14:00",
+      "status": "REFUSE",
+      "user": { "id": 1, "username": "user1", "email": "user1@example.com" },
+      "cours": null,
+      "terrain": null,
+      "coach": { "id": 1, "nom": "Ben Ali", "prenom": "Yassine", "specialite": "Musculation", "image": "assets/images/coach1.jpg", "users": [], "dates": ["LUNDI"], "heures": ["08:00"] }
+    }
+  ]
+}

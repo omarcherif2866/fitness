@@ -1,0 +1,36 @@
+{
+  "cours": [
+    {
+      "id": 1,
+      "nom": "Musculation",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793125/fitness/cours/images_hrqxmu.jpg",
+      "users": [],
+      "dates": ["LUNDI", "MERCREDI", "VENDREDI"],
+      "heures": ["08:00", "10:00", "14:00"]
+    },
+    {
+      "id": 2,
+      "nom": "Pilates",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793219/fitness/cours/beneficios-de-pilates_kcbgca.jpg",
+      "users": [],
+      "dates": ["MARDI", "JEUDI", "SAMEDI"],
+      "heures": ["09:00", "11:00", "16:00"]
+    },
+    {
+      "id": 3,
+      "nom": "Boxe",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793041/fitness/cours/s-combat-boxe_drar0b.jpg",
+      "users": [],
+      "dates": ["LUNDI", "MARDI", "JEUDI", "DIMANCHE"],
+      "heures": ["07:00", "13:00", "18:00"]
+    },
+    {
+      "id": 4,
+      "nom": "Natation",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793041/fitness/cours/pexels-photo-260598_weldcx.jpg",
+      "users": [],
+      "dates": ["MERCREDI", "VENDREDI", "SAMEDI"],
+      "heures": ["06:00", "12:00", "17:00"]
+    }
+  ]
+}

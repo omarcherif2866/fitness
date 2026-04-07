@@ -1,0 +1,36 @@
+{
+  "terrain": [
+    {
+      "id": 1,
+      "nom": "Football",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793031/fitness/terrain/foot1_ydogjc.jpg"
+
+    },
+    {
+      "id": 2,
+      "nom": "Basketball",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793031/fitness/terrain/espace-interieur-lignes-panier-basket_674594-14656_agp1f5.jpg"
+
+    },
+    {
+      "id": 3,
+      "nom": "Padel",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772792994/fitness/terrain/dlhh7sxp5kw0fzs9brke.jpg"
+    },
+        {
+      "id": 4,
+      "nom": "Piscine",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793031/fitness/terrain/piscine_mks3hq.jpg"
+    },
+        {
+      "id": 5,
+      "nom": "Ring Boxe",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793031/fitness/terrain/C1400-013_cfrisb.jpg"
+    },
+        {
+      "id": 6,
+      "nom": "Tennis",
+      "image": "https://res.cloudinary.com/daxkymr4t/image/upload/v1772793032/fitness/terrain/tennis1_jnzwfl.jpg"
+    }
+  ]
+}
