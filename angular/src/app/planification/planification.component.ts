@@ -14,7 +14,7 @@ declare var $:any;
 })
 export class PlanificationComponent implements OnInit {
   joursSemaine = JourSemaine; // Importez l'enum Jours pour l'utiliser dans le template
-  coursParJour: { [key in JourSemaine]: Cours[] } = {
+  coursParJour: { [key in any]: Cours[] } = {
     LUNDI: [],
     MARDI: [],
     MERCREDI: [],
@@ -24,6 +24,10 @@ export class PlanificationComponent implements OnInit {
     DIMANCHE: []
   };
   isLoggedIn: boolean = false;
+  jours = ['LUNDI','MARDI','MERCREDI','JEUDI','VENDREDI','SAMEDI','DIMANCHE'];
+jourActuel = new Date().toLocaleDateString('fr-FR', { weekday: 'long' }).toUpperCase();
+
+
   constructor(private renderer: Renderer2,private coursService: CoursService,private reservationService: ReservationService
     , private authService: AuthService
   ) {}
@@ -136,7 +140,11 @@ export class PlanificationComponent implements OnInit {
 
 
 
-
+getColorClass(cours: any): string {
+  const colors = ['color-a','color-b','color-c','color-d','color-e'];
+  const index = cours.nom.charCodeAt(0) % colors.length;
+  return colors[index];
+}
 
 
 

@@ -13,7 +13,7 @@ declare var $:any;
 })
 export class PlanificationCoachComponent {
   joursSemaine = JourSemaine; // Importez l'enum Jours pour l'utiliser dans le template
-  coachParJour: { [key in JourSemaine]: Coach[] } = {
+  coachParJour: { [key in any]: Coach[] } = {
     LUNDI: [],
     MARDI: [],
     MERCREDI: [],
@@ -23,6 +23,11 @@ export class PlanificationCoachComponent {
     DIMANCHE: []
   };
   isLoggedIn: boolean = false;
+jours = ['LUNDI','MARDI','MERCREDI','JEUDI','VENDREDI','SAMEDI','DIMANCHE'];
+
+jourActuel = new Date()
+  .toLocaleDateString('fr-FR', { weekday: 'long' })
+  .toUpperCase();
 
   constructor(private renderer: Renderer2,private coachService: CoachService,private reservationService: ReservationService
     , private authService: AuthService
@@ -140,5 +145,8 @@ export class PlanificationCoachComponent {
     }
   }
 
-
+getColorClass(coach: any): string {
+  const colors = ['color-a', 'color-b', 'color-c', 'color-d', 'color-e'];
+  return colors[coach.nom.charCodeAt(0) % colors.length];
+}
 }

@@ -1,36 +1,38 @@
 <app-navbar></app-navbar>
-<body>
 
-<section class="team-section team-page spad">
-  <div class="container-fluid main-cont">
-    <div class="row justify-content-center"> <!-- Utilisation de justify-content-center pour centrer -->
-      <div class="col-md-10">
-        <div class="card-columns">
-          <!-- Utilisation de ngFor pour itérer sur les cours -->
-          <div *ngFor="let chunk of chunkArray(courss, 3)" class="row">
-            <div *ngFor="let cours of chunk" class="col-12 col-sm-6 col-md-4 mb-4">
-              <div class="underlay">
-                <div class="card">
-                  <div class="card-img-top" [style.backgroundImage]="'url(' + cours.image + ')'"></div>
-                  <div class="card-block text-center">
-                    <h5 class="card-title" style="font-family: 'Anton', sans-serif">{{ cours.nom }}</h5>
+<section class="courses-section">
+  <div class="container">
 
-                    
-                    <!-- <hr>
-                    <h6 class="card-subtitle mb-2 text-muted" style="font-family: 'Anton', sans-serif">{{ cours.date | date: 'dd/MM/yyyy' }}</h6>
-                    <hr> -->
-                  </div>
-                  
-                </div>
-              </div>
-              <!-- <div class="button-container">
-                <button class="bouton valider" (click)="reserve(cours.id)">Réserver</button>
-              </div> -->
-            </div>
+    <div class="section-header">
+      <h2>Nos Cours</h2>
+      <span>{{ courss.length }} formations disponibles</span>
+    </div>
+
+    <div class="courses-grid">
+      <div *ngFor="let cours of courss" class="course-card">
+
+        <div class="card-img-wrap">
+          <img [src]="cours.image" [alt]="cours.nom" />
+          <div class="card-img-overlay"></div>
+          <!-- <span class="card-badge">{{ cours.categorie }}</span> -->
+        </div>
+
+        <div class="card-body">
+          <h3 class="card-title">{{ cours.nom }}</h3>
+          <div class="card-meta">
+            <!-- <span class="card-cat">{{ cours.type }}</span> -->
+            <span class="card-dot"></span>
+            <!-- <span class="card-date">{{ cours.date | date: 'dd/MM/yyyy' }}</span> -->
+          </div>
+          <div class="card-footer">
+            <button class="btn-reserve" (click)="reserve(cours.id)">Réserver</button>
+            <span class="arrow-icon">→</span>
           </div>
         </div>
+
       </div>
     </div>
+
   </div>
 </section>
 
